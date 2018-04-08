@@ -17,6 +17,9 @@ class BooksApp extends Component {
         }))
       })
   }
+
+  shelfUpdate = (book, shelf) => BooksAPI.update(book, shelf)
+
   render() {
     const { books } = this.state
 
