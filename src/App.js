@@ -17,6 +17,7 @@ class BooksApp extends Component {
       })
   }
   render() {
+    const { books } = this.state
     return (
       <div className="app">
         {this.state.showSearchPage ? (
