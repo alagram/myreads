@@ -18,6 +18,11 @@ class BooksApp extends Component {
   }
   render() {
     const { books } = this.state
+
+    const currentlyReading = books.filter( (book) => (book.shelf === 'currentlyReading'))
+    const read = books.filter( (book) => (book.shelf === 'read'))
+    const wantToRead = books.filter( (book) => (book.shelf === 'wantToRead'))
+
     return (
       <div className="app">
         {this.state.showSearchPage ? (
