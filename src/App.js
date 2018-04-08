@@ -8,6 +8,14 @@ class BooksApp extends Component {
     books: []
   }
 
+  componentDidMount () {
+    BooksAPI.getAll()
+      .then((books) => {
+        this.setState(() => ({
+          books
+        }))
+      })
+  }
   render() {
     return (
       <div className="app">
