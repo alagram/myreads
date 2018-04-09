@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function DisplayBook ({ book, onChangeShelf })  {
 
@@ -28,4 +28,4 @@ DisplayBook.propTypes = {
   onChangeShelf: PropTypes.func.isRequired
 }
 
-export default DisplayBook
+export default DisplayBook;

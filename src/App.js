@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
-import DisplayBook from './DisplayBook'
+import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
+import * as BooksAPI from './BooksAPI';
+import './App.css';
+import DisplayBook from './DisplayBook';
+import Search from './Search';
 
 class BooksApp extends Component {
   state = {
@@ -12,10 +13,8 @@ class BooksApp extends Component {
   componentDidMount () {
     BooksAPI.getAll()
       .then((books) => {
-        this.setState(() => ({
-          books
-        }))
-      })
+        this.setState(() => ({ books }));
+      });
   }
 
   updateApi = (book, shelf) => BooksAPI.update(book, shelf);
@@ -29,11 +28,11 @@ class BooksApp extends Component {
   };
 
   render() {
-    const { books } = this.state
+    const { books } = this.state;
 
-    const currentlyReading = books.filter( (book) => (book.shelf === 'currentlyReading'))
-    const read = books.filter( (book) => (book.shelf === 'read'))
-    const wantToRead = books.filter( (book) => (book.shelf === 'wantToRead'))
+    const currentlyReading = books.filter( (book) => (book.shelf === 'currentlyReading'));
+    const read = books.filter( (book) => (book.shelf === 'read'));
+    const wantToRead = books.filter( (book) => (book.shelf === 'wantToRead'));
 
     return (
       <div className="app">
@@ -104,4 +103,4 @@ class BooksApp extends Component {
   }
 }
 
-export default BooksApp
+export default BooksApp;
