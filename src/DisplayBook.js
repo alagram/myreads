@@ -8,8 +8,8 @@ function DisplayBook ({ book, onChangeShelf })  {
       <div className="book-top">
         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: (book.imageLinks ? `url(${book.imageLinks.thumbnail})` : "") }}></div>
         <div className="book-shelf-changer">
-          <select value={book.shelf} onChange={ (e) => onChangeShelf(book, e.target.value) }>
-            <option value="none" disabled>Move to...</option>
+          <select value={book.shelf ? book.shelf : 'none'} onChange={ (e) => onChangeShelf(book, e.target.value) }>
+            <option value="moveTo" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
             <option value="read">Read</option>
