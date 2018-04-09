@@ -18,7 +18,7 @@ class BooksApp extends Component {
       })
   }
 
-  shelfUpdate = (book, shelf) => BooksAPI.update(book, shelf)
+  update = (book, shelf) => BooksAPI.update(book, shelf)
 
   render() {
     const { books } = this.state
@@ -42,7 +42,7 @@ class BooksApp extends Component {
                   <ol className="books-grid">
                     {currentlyReading.map( (book) => (
                       <li key={book.id}>
-                        <DisplayBook book={book} onChangeShelf={this.shelfUpdate} />
+                        <DisplayBook book={book} onChangeShelf={this.update} />
                       </li>
                     ))}
                   </ol>
@@ -57,7 +57,7 @@ class BooksApp extends Component {
                   <ol className="books-grid">
                     {wantToRead.map( (book) => (
                       <li key={book.id}>
-                        <DisplayBook book={book} onChangeShelf={this.shelfUpdate} />
+                        <DisplayBook book={book} onChangeShelf={this.update} />
                       </li>
                     ))}
                   </ol>
@@ -72,7 +72,7 @@ class BooksApp extends Component {
                   <ol className="books-grid">
                     {read.map( (book) => (
                       <li key={book.id}>
-                        <DisplayBook book={book} onChangeShelf={this.shelfUpdate} />
+                        <DisplayBook book={book} onChangeShelf={this.update} />
                       </li>
                     ))}
                   </ol>
