@@ -29,6 +29,12 @@ class BooksApp extends Component {
 
     return (
       <div className="app">
+        <Route path='/search' render={() => (
+          <Search
+            books={books}
+            onAddShelf={this.updateShelf}
+          />
+        )} />
 
         <Route exact path='/' render={() => (
           <div className="list-books">
