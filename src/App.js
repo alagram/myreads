@@ -30,9 +30,11 @@ class BooksApp extends Component {
   render() {
     const { books } = this.state;
 
-    const currentlyReading = books.filter( (book) => (book.shelf === 'currentlyReading'));
-    const read = books.filter( (book) => (book.shelf === 'read'));
-    const wantToRead = books.filter( (book) => (book.shelf === 'wantToRead'));
+    const shelves = {
+      currentlyReading: ['Currently Reading', 'currentlyReading'],
+      wantToRead: ['Want to Read', 'wantToRead'],
+      read: ['Read', 'read']
+    }
 
     return (
       <div className="app">
@@ -48,50 +50,16 @@ class BooksApp extends Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
-            <div className="list-books-content">
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Currently Reading</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                    {currentlyReading.map( (book) => (
-                      <li key={book.id}>
-                        <DisplayBook book={book} onChangeShelf={this.updateApi} />
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              </div>
-            </div>
 
-            <div className="list-books-content">
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Want to Read</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                    {wantToRead.map( (book) => (
-                      <li key={book.id}>
-                        <DisplayBook book={book} onChangeShelf={this.updateApi} />
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              </div>
-            </div>
-
-            <div className="list-books-content">
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Read</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                    {read.map( (book) => (
-                      <li key={book.id}>
-                        <DisplayBook book={book} onChangeShelf={this.updateApi} />
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              </div>
-            </div>
+              { Object.keys(shelves).map((shelf) => (
+                <DisplayBook
+                  key={shelf}
+                  shelf={shelves[shelf][1]}
+                  title={shelves[shelf][0]}
+                  books={ books }
+                  onChangeShelf={ this.changeShelf }
+                />
+              ))}
 
             <div className="open-search">
               <Link to='/search'>Add a book</Link>
