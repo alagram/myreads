@@ -7,44 +7,52 @@ import DisplayBook from './DisplayBook';
 class Search extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
-    onAddShelf: PropTypes.func.isRequired
+    onAddBook: PropTypes.func.isRequired
   }
 
   state = {
     query: '',
-    results: []
+    results: [],
+    error: null
   }
 
   updateQuery = (query) => {
-    query = query.trim();
+    this.setState(() => ({ query }))
 
     BooksAPI.search(query)
       .then( (results) => {
-        if (typeof results !== 'undefined' && typeof results.length !== 'undefined') {
-          results.forEach((result) => {
-            this.props.books.forEach((book) => {
-              if (book.id === result.id) {
-                result.shelf = book.shelf;
-              }
-            });
-          });
 
-          this.setState(() => ({
-            results,
-            query
-          }))
-        } else {
-          this.setState(() => ({
-            results: [],
-            query
-          }));
+        if (query === this.state.query){
+          if (typeof results !== 'undefined' && typeof results.length !== 'undefined') {
+            results.forEach((result) => {
+              this.props.books.forEach((book) => {
+                if (book.id === result.id) {
+                  result.shelf = book.shelf;
+                }
+              });
+            });
+
+            this.setState(() => ({
+              results
+            }))
+          } else {
+            this.setState(() =>
+              ({
+                results: []
+              }));
+          }
         }
       })
+        .catch((error) => {
+          this.setState(() => ({
+            error: 'Books not found'
+          }))
+      });
   };
 
   render () {
-    const { query, results } = this.state;
-    const { onAddShelf } = this.props;
+    const { error, query, results } = this.state;
+    const { onAddBook } = this.props;
 
     return (
       <div className="search-books">
@@ -64,16 +72,16 @@ class Search extends Component {
 
           </div>
         </div>
+
+        {error && (
+          <div className="search-books-results">{error}</div>
+          )}
+
         {results.length > 0 ? (
-          <div className="search-books-results">
-            <ol className="books-grid">
-              {results && results.map( (book) => (
-                <li key={book.id}>
-                  <DisplayBook book={book} onChangeShelf={onAddShelf} />
-                </li>
-              ))}
-            </ol>
-          </div>
+          <DisplayBook
+            books={results}
+            onChangeShelf={onAddBook}
+          />
         ) : (<div className="search-books-results">No Search Results</div>)}
 
       </div>
