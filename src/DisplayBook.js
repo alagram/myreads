@@ -47,4 +47,9 @@ DisplayBook.propTypes = {
   onChangeShelf: PropTypes.func.isRequired
 }
 
+DisplayBook.defaultProps = {
+  shelf: '',
+  title: ''
+}
+
 export default DisplayBook;
