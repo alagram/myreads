@@ -53,8 +53,8 @@ class BooksApp extends Component {
       <div className="app">
         <Route path='/search' render={() => (
           <Search
-            books={books}
-            onAddShelf={this.updateShelf}
+            books={ books }
+            onAddBook={this.addBook}
           />
         )} />
 
