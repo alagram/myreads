@@ -17,7 +17,14 @@ class BooksApp extends Component {
       });
   }
 
-  updateApi = (book, shelf) => BooksAPI.update(book, shelf);
+  changeShelf = (book, newShelf) => {
+    this.setState((prevState) => {
+      book.shelf = newShelf
+      return { books: prevState.books }
+    })
+
+    BooksAPI.update(book, newShelf);
+  };
 
   updateShelf = (book, shelf) => {
     this.setState((prevState) => {
