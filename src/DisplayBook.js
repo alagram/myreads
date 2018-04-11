@@ -41,8 +41,8 @@ function DisplayBook ({ shelf, title, books, onChangeShelf })  {
 }
 
 DisplayBook.propTypes = {
-  shelf: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  shelf: PropTypes.string,
+  title: PropTypes.string,
   books: PropTypes.array.isRequired,
   onChangeShelf: PropTypes.func.isRequired
 }
