@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function DisplayBook ({ shelf, title, books, onChangeShelf })  {
+  const showingBooks = shelf === ''
+    ? books
+    : books.filter( (book) => book.shelf === shelf)
 
   return (
     <div className="list-books-content">
@@ -10,7 +13,7 @@ function DisplayBook ({ shelf, title, books, onChangeShelf })  {
           <h2 className="bookshelf-title">{title}</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">
-                {books.filter( (book) => book.shelf === shelf).map((book) => (
+                {showingBooks.map((book) => (
                   <li key={book.id}>
                     <div  className="book">
                       <div className="book-top">
@@ -29,8 +32,6 @@ function DisplayBook ({ shelf, title, books, onChangeShelf })  {
                       <div className="book-authors">{book.authors ? book.authors.join(', ') : ""}</div>
                     </div>
                   </li>
-
-
                 ))}
               </ol>
             </div>
