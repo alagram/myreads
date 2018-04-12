@@ -4,6 +4,7 @@ import * as BooksAPI from './BooksAPI';
 import './App.css';
 import DisplayBook from './DisplayBook';
 import Search from './Search';
+import SHELVES from './constant';
 
 class BooksApp extends Component {
   state = {
@@ -43,12 +44,6 @@ class BooksApp extends Component {
   render() {
     const { books } = this.state;
 
-    const shelves = {
-      currentlyReading: ['Currently Reading', 'currentlyReading'],
-      wantToRead: ['Want to Read', 'wantToRead'],
-      read: ['Read', 'read']
-    }
-
     return (
       <div className="app">
         <Route path='/search' render={() => (
@@ -64,11 +59,11 @@ class BooksApp extends Component {
               <h1>MyReads</h1>
             </div>
 
-              { Object.keys(shelves).map((shelf) => (
+              { Object.keys(SHELVES).map((shelf) => (
                 <DisplayBook
                   key={shelf}
-                  shelf={shelves[shelf][1]}
-                  title={shelves[shelf][0]}
+                  shelf={SHELVES[shelf][1]}
+                  title={SHELVES[shelf][0]}
                   books={ books }
                   onChangeShelf={ this.changeShelf }
                 />
