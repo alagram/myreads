@@ -1,17 +1,17 @@
 # MyReads Project
- MyReads is a simple React app that allows you to select and categorize books you have read, are currently reading, or want to read.
+MyReads is a simple React app that allows you to select and categorize books you have read, are currently reading, or want to read.
 
 ## Installation
- Clone the GitHub repository and install dependencies.
- ```bash
- $ git clone https://github.com/alagram/myreads.git
+Clone the GitHub repository and install dependencies.
+```bash
+$ git clone https://github.com/alagram/myreads.git
 
- $ cd myreads
+$ cd myreads
 
- $ npm install
+$ npm install
 
- $ npm start
- ```
+$ npm start
+```
 
 ## Usage
 From the main page, you can select books you want to move to different shelves. This allows a user to select books to the "currently reading", "want to read", or "read" shelves.
